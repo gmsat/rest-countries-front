@@ -1,10 +1,16 @@
 import './App.css';
+import { Grid } from "@mui/material";
+import useFetch from "./hooks/useFetch";
+import { useEffect, useState } from "react";
 
-// TODO: using https://restcountries.com make a visualized representation of countries
-// TODO: Countries that displays country name, region, and area size (use https://restcountries.com/v2/all?fields=name,region,area to get only necessary data)
+// using https://restcountries.com make a visualized representation of countries
+// display country name, region, and area size (use https://restcountries.com/v2/all?fields=name,region,area to get only necessary data)
 
-// TODO: requirements
-// create a repo using git and push to github/gitlab
+// TODO: main app page
+// TODO: add react router
+// TODO: add UI elements
+// TODO: fetch and display the data
+// TODO: implement assignment requirements
 // TODO: fetch the data from the endpoint
 // TODO: display a list for the data
 // TODO: make the list sortable alphabetically by name (ascending, descending)
@@ -14,10 +20,14 @@ import './App.css';
 // TODO: Implement pagination
 
 function App() {
+
+  const url = "https://restcountries.com/v2/all?fields=name,region,area";
+  const {data, loading, error} = useFetch(url, true);
+
   return (
-    <div className="App">
-      Rest countries assignment
-    </div>
+    <Grid>
+      {JSON.stringify(data)}
+    </Grid>
   )
 }
 

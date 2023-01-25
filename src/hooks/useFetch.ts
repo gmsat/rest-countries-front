@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-function useFetch(_url: string, _fetchOnLoad: boolean) {
+function useFetch(_url: string, _fetchOnLoad: boolean = false) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (_fetchOnLoad) {
@@ -18,22 +18,22 @@ function useFetch(_url: string, _fetchOnLoad: boolean) {
     await fetch(`${_url}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res.data)
-        setData(res.data);
-        setLoading(false)
-        setError(null)
+        console.log(res);
+        setData(res);
+        setLoading(false);
+        setError(null);
       })
       .catch(e => {
         setError(e);
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   }
 
   const reFetch = () => {
-    fetchData().catch(e => console.log(e))
+    fetchData().catch(e => console.log(e));
   }
 
-  const clearData = () => setData(null)
+  const clearData = () => setData(null);
 
   return {data, loading, error, reFetch, clearData};
 }
