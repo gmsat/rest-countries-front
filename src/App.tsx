@@ -1,32 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import './App.css';
+
+// TODO: using https://restcountries.com make a visualized representation of countries
+// TODO: Countries that displays country name, region, and area size (use https://restcountries.com/v2/all?fields=name,region,area to get only necessary data)
+
+// TODO: requirements
+// create a repo using git and push to github/gitlab
+// TODO: fetch the data from the endpoint
+// TODO: display a list for the data
+// TODO: make the list sortable alphabetically by name (ascending, descending)
+// TODO: Implement filters that filter countries:
+//  - That are smaller than Lithuania
+//  - That are in "Oceania" region
+// TODO: Implement pagination
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      Rest countries assignment
     </div>
   )
 }
