@@ -1,12 +1,22 @@
 import { CountryObject } from "./types";
 import { makeAutoObservable } from "mobx";
-import { arrayHelpers } from "./helpers/ArrayHelpers";
+import {
+  filterArrayByRange,
+  filterArrayByKeyValue,
+  sortArrayByKey,
+  paginateArray,
+  getTotalPagesNumber
+} from "./helpers/ArrayHelpers";
 
 class CountriesStore {
   fetchedCountries: CountryObject[] = [];
   displayCountries: CountryObject[] = [];
   displayPrevious: CountryObject[] = [];
+  displayPaginatedCountries: CountryObject[] = [];
+  countriesPerPage: number = 10;
+  currentPageNumber: number = 1;
   counterTest: number = 0;
+  totalNumberOfPages: number = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -21,7 +31,7 @@ class CountriesStore {
   }
 
   sortCountriesByName(option: "ascending" | "descending") {
-    this.displayCountries = arrayHelpers.sortArrayByKey(this.displayCountries, "name", option);
+    this.displayCountries = sortArrayByKey(this.displayCountries, "name", option);
   }
 
   setDisplayToPrevValue() {
@@ -30,24 +40,32 @@ class CountriesStore {
 
   filterCountriesByRegion(key: string, keyVal: any) {
     this.displayPrevious = this.fetchedCountries;
-    const filteredData = arrayHelpers.filterArrayByKeyValue(this.displayCountries, "region", keyVal);
+    const filteredData = filterArrayByKeyValue(this.displayCountries, "region", keyVal);
 
     this.setDisplayCountries(filteredData);
-
   }
 
   filterCountriesByAreaRange(country: string, option: "smaller" | "bigger") {
-    const countryObj = arrayHelpers.filterArrayByKeyValue(this.fetchedCountries, "name", country)[0];
+    const countryObj = filterArrayByKeyValue(this.fetchedCountries, "name", country)[0];
     const countrySize = countryObj.area;
 
     this.displayPrevious = this.fetchedCountries;
-    const filteredData = arrayHelpers.filterArrayByRange(this.displayCountries, "area", countrySize, option);
+    const filteredData = filterArrayByRange(this.displayCountries, "area", countrySize, option);
 
     this.setDisplayCountries(filteredData);
   }
 
-  applyFilters() {
+  setPaginatedCountryData(data: any[], pageSize: number, pageNumber: number) {
+    // const totalPages = getTotalPagesNumber(this.displayCountries, this.countriesPerPage);
 
+    // pageSize = this.countriesPerPage;
+    // pageNumber = this.currentPageNumber;
+
+    this.displayPaginatedCountries = paginateArray(data, pageSize, pageNumber);
+  }
+
+  setCountriesPerPage(pageSize: number) {
+    this.countriesPerPage = pageSize;
   }
 
   increaseCounter(_amount: number) {

@@ -1,21 +1,47 @@
 import React from 'react';
 import { CountryObject } from "../../types";
+import { styled, Box } from "@mui/material";
+import { Skeleton } from "@mui/material";
 
 interface CountryDataRowProps {
   country: CountryObject,
   index: number
 }
 
+const TableRow = styled('tr')({
+  padding: 2,
+  backgroundColor: "white"
+});
+
+const SkeletonRow = () => {
+  return (
+    <TableRow>
+      <td>
+        <Skeleton animation={"wave"}/>
+      </td>
+      <td>
+        <Skeleton animation={"wave"}/>
+      </td>
+      <td>
+        <Skeleton animation={"wave"}/>
+      </td>
+      <td>
+        <Skeleton animation={"wave"}/>
+      </td>
+    </TableRow>
+  );
+}
+
 const CountryDataRow: React.FC<CountryDataRowProps> = ({country, index}) => {
   const {name, region, area, independent} = country;
 
   return (
-    <tr>
+    <TableRow>
       <td>{index}</td>
       <td>{name}</td>
       <td>{region}</td>
       <td>{area}</td>
-    </tr>
+    </TableRow>
   );
 };
 

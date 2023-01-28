@@ -5,6 +5,7 @@ import AlphabeticalSortingOption from "./data-handling-options/AlphabeticalSorti
 import FilterOptionsGroup from "./data-handling-options/FilterOptionsGroup";
 import RegionCheckbox from "./data-handling-options/RegionCheckbox";
 import AreaSizeCheckbox from "./data-handling-options/AreaSizeCheckbox";
+import Loader from "./feedback/Loader";
 
 
 export {
@@ -14,5 +15,6 @@ export {
   AlphabeticalSortingOption,
   FilterOptionsGroup,
   RegionCheckbox,
-  AreaSizeCheckbox
+  AreaSizeCheckbox,
+  Loader
 }
