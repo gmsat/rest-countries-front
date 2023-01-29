@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Box, Checkbox, FormControlLabel } from "@mui/material";
 import countriesStore from "../../CountriesStore";
 import { observer } from "mobx-react-lite";
+import { Chip, Grid } from "@mui/material";
+import { Tooltip } from "@mui/material";
 
 const RegionCheckbox = () => {
   const [checked, setChecked] = useState(false);
   
-  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChecked = (value: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const targetVal = e.target.checked;
 
     setChecked(targetVal);
-
-    // countriesStore.paginatedCountryData(countriesStore.displayCountries, 10, 1);
-    // const paginatedData = countriesStore.displayPaginatedCountries;
-
-    // console.log("Items per page: 10; Page: 1", paginatedData);
+    countriesStore.setCurrentPageNumber(1);
 
     if (targetVal) {
-      countriesStore.filterCountriesByRegion("region", "Oceania");
+      countriesStore.filterCountriesByRegion("region", value);
     } else {
       countriesStore.setDisplayToPrevValue();
     }
-
   }
   
   return (
-    <FormControlLabel control={<Checkbox inputProps={{ 'aria-label': 'controlled' }} value={checked} onChange={handleChecked}/>} label={"Oceania"}/>
+    <Tooltip arrow placement={"top"} title={"Show countries in Oceania region"}>
+      <Chip color={"default"} label={<FormControlLabel control={<Checkbox inputProps={{ 'aria-label': 'controlled' }} value={checked} onChange={(e) => handleChecked("Oceania", e)}/>} label={"Oceania"}/>}></Chip>
+    </Tooltip>
   );
 };
 

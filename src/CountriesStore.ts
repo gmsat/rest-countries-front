@@ -9,8 +9,8 @@ import {
 } from "./helpers/ArrayHelpers";
 
 class CountriesStore {
-  fetchedCountries: CountryObject[] = [];
-  displayCountries: CountryObject[] = [];
+  fetchedData: CountryObject[] = [];
+  displayData: CountryObject[] = [];
   displayPrevious: CountryObject[] = [];
   displayPaginatedCountries: CountryObject[] = [];
   countriesPerPage: number = 10;
@@ -22,37 +22,37 @@ class CountriesStore {
     makeAutoObservable(this);
   }
 
-  setFetchedCountries(data: CountryObject[]) {
-    this.fetchedCountries = data;
+  setFetchedData(data: CountryObject[]) {
+    this.fetchedData = data;
   }
 
-  setDisplayCountries(data: CountryObject[]) {
-    this.displayCountries = data;
+  setDisplayData(data: CountryObject[]) {
+    this.displayData = data;
   }
 
   sortCountriesByName(option: "ascending" | "descending") {
-    this.displayCountries = sortArrayByKey(this.displayCountries, "name", option);
+    this.displayData = sortArrayByKey(this.displayData, "name", option);
   }
 
   setDisplayToPrevValue() {
-    this.displayCountries = this.displayPrevious;
+    this.displayData = this.displayPrevious;
   }
 
   filterCountriesByRegion(key: string, keyVal: any) {
-    this.displayPrevious = this.fetchedCountries;
-    const filteredData = filterArrayByKeyValue(this.displayCountries, "region", keyVal);
+    this.displayPrevious = this.fetchedData;
+    const filteredData = filterArrayByKeyValue(this.displayData, "region", keyVal);
 
-    this.setDisplayCountries(filteredData);
+    this.setDisplayData(filteredData);
   }
 
   filterCountriesByAreaRange(country: string, option: "smaller" | "bigger") {
-    const countryObj = filterArrayByKeyValue(this.fetchedCountries, "name", country)[0];
+    const countryObj = filterArrayByKeyValue(this.fetchedData, "name", country)[0];
     const countrySize = countryObj.area;
 
-    this.displayPrevious = this.fetchedCountries;
-    const filteredData = filterArrayByRange(this.displayCountries, "area", countrySize, option);
+    this.displayPrevious = this.fetchedData;
+    const filteredData = filterArrayByRange(this.displayData, "area", countrySize, option);
 
-    this.setDisplayCountries(filteredData);
+    this.setDisplayData(filteredData);
   }
 
   setPaginatedCountryData(data: any[], pageSize: number, pageNumber: number) {
@@ -66,6 +66,10 @@ class CountriesStore {
 
   setCountriesPerPage(pageSize: number) {
     this.countriesPerPage = pageSize;
+  }
+
+  setCurrentPageNumber(pageNumber: number) {
+    this.currentPageNumber = pageNumber;
   }
 
   increaseCounter(_amount: number) {

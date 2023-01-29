@@ -1,6 +1,9 @@
+type CountryImages = {svg: string, png: string};
+
 export type CountryObject = {
   name: string,
   region: string,
   area: number,
-  independent: boolean
+  flags: CountryImages,
+  independent?: boolean
 }

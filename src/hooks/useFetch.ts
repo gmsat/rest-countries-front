@@ -24,6 +24,7 @@ function useFetch(_url: string, _fetchOnLoad: boolean = false) {
         setError(null);
       })
       .catch(e => {
+        console.log("error:", e);
         setError(e);
         setLoading(false);
       });
