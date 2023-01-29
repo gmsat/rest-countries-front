@@ -3,9 +3,7 @@ import useFetch from "./hooks/useFetch";
 import { CountriesList, Toolbar } from "./components";
 import DataHandlersContainer from "./components/data-handling-options/DataHandlersContainer";
 import countriesJson from './public/countries.json';
-import { useEffect, useState } from "react";
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { CountryObject } from "./types";
 
 function App() {
   const url = "https://restcountries.com/v2/all?fields=name,region,area,flags";
