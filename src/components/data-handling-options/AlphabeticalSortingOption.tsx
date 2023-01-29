@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FormControl, InputLabel, MenuItem, SelectChangeEvent, Box, Paper, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import countriesStore from "../../CountriesStore";
-import { Chip } from "@mui/material";
 import SortByAlphaIcon from '@mui/icons-material/SortByAlpha';
 
 
@@ -28,7 +27,6 @@ const AlphabeticalSortingOption = () => {
         size={"small"}
         variant={"outlined"}
       >
-        {/*<MenuItem value={""}></MenuItem>*/}
         <MenuItem value={"ascending"}>Ascending</MenuItem>
         <MenuItem value={"descending"}>Descending</MenuItem>
       </Select>

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { AppBar } from "@mui/material";
 
 
-const Toolbar = ({children}: {children?: ReactNode}) => {
+const Toolbar = ({children}: { children?: ReactNode }) => {
   return (
     <AppBar variant={"elevation"}
             elevation={1}
@@ -15,7 +15,7 @@ const Toolbar = ({children}: {children?: ReactNode}) => {
               borderRadius: 2,
               backgroundColor: "rgba(179,205,224,0.7)"
             }}>
-        {children}
+      {children}
     </AppBar>
   );
 };

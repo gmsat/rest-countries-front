@@ -1,8 +1,6 @@
 import React from 'react';
-import { AlphabeticalSortingOption } from "../index";
-import { FilterOptionsGroup } from "../index";
+import { AlphabeticalSortingOption, FilterOptionsGroup } from "../index";
 import { Grid } from "@mui/material";
-
 
 const DataHandlersContainer = () => {
 

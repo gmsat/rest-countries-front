@@ -1,6 +1,5 @@
 import React from 'react';
-import { CircularProgress, Grid } from "@mui/material";
-import { Backdrop } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const Loader = () => {
   return (

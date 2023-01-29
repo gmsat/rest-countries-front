@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function useFetch(_url: string, _fetchOnLoad: boolean = false) {
+function useFetch(_url: string, _fetchOnLoad: boolean = false, _log: boolean = false) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,13 +18,15 @@ function useFetch(_url: string, _fetchOnLoad: boolean = false) {
     await fetch(`${_url}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        if (_log) { console.log(res); }
+
         setData(res);
         setLoading(false);
         setError(null);
       })
       .catch(e => {
-        console.log("error:", e);
+        if (_log) { console.log("error:", e); }
+
         setError(e);
         setLoading(false);
       });

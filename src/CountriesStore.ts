@@ -4,19 +4,13 @@ import {
   filterArrayByRange,
   filterArrayByKeyValue,
   sortArrayByKey,
-  paginateArray,
-  getTotalPagesNumber
 } from "./helpers/ArrayHelpers";
 
 class CountriesStore {
   fetchedData: CountryObject[] = [];
   displayData: CountryObject[] = [];
   displayPrevious: CountryObject[] = [];
-  displayPaginatedCountries: CountryObject[] = [];
-  countriesPerPage: number = 10;
   currentPageNumber: number = 1;
-  counterTest: number = 0;
-  totalNumberOfPages: number = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -38,7 +32,7 @@ class CountriesStore {
     this.displayData = this.displayPrevious;
   }
 
-  filterCountriesByRegion(key: string, keyVal: any) {
+  filterCountriesByRegion(key: string, keyVal: string) {
     this.displayPrevious = this.fetchedData;
     const filteredData = filterArrayByKeyValue(this.displayData, "region", keyVal);
 
@@ -55,25 +49,8 @@ class CountriesStore {
     this.setDisplayData(filteredData);
   }
 
-  setPaginatedCountryData(data: any[], pageSize: number, pageNumber: number) {
-    // const totalPages = getTotalPagesNumber(this.displayCountries, this.countriesPerPage);
-
-    // pageSize = this.countriesPerPage;
-    // pageNumber = this.currentPageNumber;
-
-    this.displayPaginatedCountries = paginateArray(data, pageSize, pageNumber);
-  }
-
-  setCountriesPerPage(pageSize: number) {
-    this.countriesPerPage = pageSize;
-  }
-
   setCurrentPageNumber(pageNumber: number) {
     this.currentPageNumber = pageNumber;
-  }
-
-  increaseCounter(_amount: number) {
-    this.counterTest = this.counterTest + _amount;
   }
 
 }
