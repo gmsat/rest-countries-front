@@ -1,11 +1,12 @@
 import React, { ReactNode } from 'react';
-import { AppBar } from "@mui/material";
+import { AppBar, Grid } from "@mui/material";
+import { AlphabeticalSortingOption, FilterOptionsGroup } from "../index";
 
-const Toolbar = () => {
+const Toolbar = ({children}: {children?: ReactNode}) => {
   return (
-    <AppBar variant={"outlined"} position={"sticky"}>
-
-    </AppBar>
+    <Grid container sx={{backgroundColor: "white", padding: 2}}>
+      {children}
+    </Grid>
   );
 };
 

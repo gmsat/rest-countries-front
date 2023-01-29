@@ -11,6 +11,11 @@ const RegionCheckbox = () => {
 
     setChecked(targetVal);
 
+    // countriesStore.paginatedCountryData(countriesStore.displayCountries, 10, 1);
+    // const paginatedData = countriesStore.displayPaginatedCountries;
+
+    // console.log("Items per page: 10; Page: 1", paginatedData);
+
     if (targetVal) {
       countriesStore.filterCountriesByRegion("region", "Oceania");
     } else {

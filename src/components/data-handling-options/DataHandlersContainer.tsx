@@ -1,15 +1,16 @@
 import React from 'react';
 import { AlphabeticalSortingOption } from "../index";
 import { FilterOptionsGroup } from "../index";
+import { Grid } from "@mui/material";
 
 
 const DataHandlersContainer = () => {
 
   return (
-    <div>
-      <AlphabeticalSortingOption/>
+    <Grid container display={"flex"} flexDirection={"row"} justifyContent={"space-between"}>
       <FilterOptionsGroup/>
-    </div>
+      <AlphabeticalSortingOption/>
+    </Grid>
   );
 };
 
