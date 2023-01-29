@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, Chip, FormControlLabel, Tooltip } from "@mui/material";
 import countriesStore from "../../CountriesStore";
 import { observer } from "mobx-react-lite";
-import { Chip } from "@mui/material";
-import { Tooltip } from "@mui/material";
 
 const AreaSizeCheckbox = () => {
   const [checked, setChecked] = useState(false);
@@ -25,7 +23,9 @@ const AreaSizeCheckbox = () => {
     <Tooltip arrow title={"Show countries smaller than Lithuania"} placement={"top"}>
       <Chip
         color={"default"}
-        label={<FormControlLabel control={<Checkbox inputProps={{ 'aria-label': 'controlled' }} value={checked} onChange={(e) => handleChecked("Lithuania", "smaller", e)}/>} label={"< Lithuania"}/>}/>
+        label={<FormControlLabel control={<Checkbox inputProps={{'aria-label': 'controlled'}} value={checked}
+                                                    onChange={(e) => handleChecked("Lithuania", "smaller", e)}/>}
+                                 label={"< Lithuania"}/>}/>
     </Tooltip>
   );
 };

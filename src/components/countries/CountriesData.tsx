@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useTransition } from 'react';
-import { CountryDataRow } from "../index";
+import { CountriesDataList } from "../index";
 import { CountryObject } from "../../types";
 import { observer } from "mobx-react-lite";
 import countriesStore from "../../CountriesStore";
-import { Grid, Pagination, Paper, Grow } from "@mui/material";
+import { Pagination, Paper } from "@mui/material";
 import { getTotalPagesNumber, paginateArray } from "../../helpers/ArrayHelpers";
-import { Loader } from "../index";
-import { styled } from "@mui/material";
-import { CountriesTable } from "../index";
-import { CountriesDataList } from "../index";
 
 interface CountriesListProps {
   data: CountryObject[] | null
@@ -16,10 +12,8 @@ interface CountriesListProps {
 
 const CountriesData: React.FC<CountriesListProps> = ({data}) => {
   const [pageData, setPageData] = useState<null | CountryObject[]>(null);
-  const [pageCount, setPageCount] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
-  // const [currentPage, setCurrentPage] = useState(1);
   const [isPending, setTransition] = useTransition();
 
   async function setPagesNumber() {
@@ -33,7 +27,6 @@ const CountriesData: React.FC<CountriesListProps> = ({data}) => {
   }
 
   const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
-    // setCurrentPage(value);
     countriesStore.setCurrentPageNumber(value);
   }
 
@@ -70,7 +63,8 @@ const CountriesData: React.FC<CountriesListProps> = ({data}) => {
                backgroundColor: "rgba(179,205,224,0.7)",
                borderRadius: 2,
                marginTop: 2,
-               display: "flex"}}>
+               display: "flex"
+             }}>
 
         <Pagination onChange={handlePageChange}
                     defaultPage={1}
