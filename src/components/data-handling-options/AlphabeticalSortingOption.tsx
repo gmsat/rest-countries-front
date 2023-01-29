@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Box } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, SelectChangeEvent, Box, Paper, Select } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import countriesStore from "../../CountriesStore";
+import { Chip } from "@mui/material";
+import SortByAlphaIcon from '@mui/icons-material/SortByAlpha';
+
 
 type AbcSortingOpts = "ascending" | "descending"
 
 const AlphabeticalSortingOption = () => {
-  const [selected, setSelected] = useState<AbcSortingOpts>("ascending");
+  const [selected, setSelected] = useState<AbcSortingOpts | "">("");
 
   const handleChange = (e: SelectChangeEvent) => {
     const targetVal = e.target.value;
@@ -15,20 +18,21 @@ const AlphabeticalSortingOption = () => {
   }
 
   return (
-    <Box>
-      <FormControl size={"small"} sx={{minWidth: 120}}>
-        <InputLabel id={"sorting-option"}>Sort</InputLabel>
-        <Select
-          labelId={"sorting-option"}
-          value={selected}
-          onChange={handleChange}
-          label={"Sort"}
-        >
-          <MenuItem value={"ascending"}>Ascending</MenuItem>
-          <MenuItem value={"descending"}>Descending</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl size={"small"} sx={{minWidth: "120px"}}>
+      <InputLabel id={"sorting-option"} color={"info"}><SortByAlphaIcon/></InputLabel>
+      <Select
+        labelId={"sorting-option"}
+        value={selected}
+        onChange={handleChange}
+        label={"AZ"}
+        size={"small"}
+        variant={"outlined"}
+      >
+        {/*<MenuItem value={""}></MenuItem>*/}
+        <MenuItem value={"ascending"}>Ascending</MenuItem>
+        <MenuItem value={"descending"}>Descending</MenuItem>
+      </Select>
+    </FormControl>
   );
 };
 

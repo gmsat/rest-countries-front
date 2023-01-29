@@ -3,7 +3,7 @@ import { CountryObject } from "../../types";
 import { styled, Box } from "@mui/material";
 import { Skeleton } from "@mui/material";
 
-interface CountryDataRowProps {
+export interface CountryDataRowProps {
   country: CountryObject,
   index: number
 }
